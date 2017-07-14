@@ -1,0 +1,12 @@
+﻿@model CartmitMVC.Models.CourseReview
+
+<div class="review">
+    <h4>@Html.DisplayFor(modelItem => Model.Name)</h4>
+    <span>@Html.DisplayFor(modelItem => Model.Rating)</span>
+    <p>@Html.DisplayFor(modelItem => Model.City), @Html.DisplayFor(modelItem => Model.Country)</p>
+
+    <span class="right">
+        @Html.ActionLink("Edit", "Edit", new { id = Model.Id })
+    </span>
+
+</div>

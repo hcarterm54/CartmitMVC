@@ -13,6 +13,21 @@ namespace CartmitMVC
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
+            // /Course/arboretum
+            routes.MapRoute(
+                name: "Course",
+                url: "course/{name}",
+                defaults: new {controller = "Course", action = "Search", name = UrlParameter.Optional}
+            );
+
+            // /Cuisine/french
+            routes.MapRoute(
+                name: "Cuisine",
+                url: "cuisine/{name}",
+                defaults: new { controller = "Cuisine", action = "Search", name = UrlParameter.Optional }
+            );
+
+            // /Home
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",

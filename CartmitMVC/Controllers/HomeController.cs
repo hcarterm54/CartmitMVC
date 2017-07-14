@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using CartmitMVC.Models;
 
 namespace CartmitMVC.Controllers
 {
@@ -10,14 +11,23 @@ namespace CartmitMVC.Controllers
     {
         public ActionResult Index()
         {
+            //var controller = RouteData.Values["controller"];
+            //var action = RouteData.Values["action"];
+            //var id = RouteData.Values["id"];
+
+            var message = "Hello, world";
+
+            ViewBag.Message = message;
+
             return View();
         }
 
         public ActionResult About()
         {
-            ViewBag.Message = "Your application description page.";
-
-            return View();
+            var model = new AboutModel();
+            model.Name = "Carter Mitchell";
+            model.Location = "Illinois, USA";
+            return View(model);
         }
 
         public ActionResult Contact()

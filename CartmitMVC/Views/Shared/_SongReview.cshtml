@@ -1,0 +1,12 @@
+﻿@model CartmitMVC.Models.SongReview
+
+<div class="review">
+    <h4>@Html.DisplayFor(modelItem => Model.Title)</h4>
+    <span>@Html.DisplayFor(modelItem => Model.Artist)</span>
+    <p>@Html.DisplayFor(modelItem => Model.Released)</p>
+
+    <span class="right">
+        @Html.ActionLink("Edit", "Edit", new { id = Model.Id })
+    </span>
+
+</div>

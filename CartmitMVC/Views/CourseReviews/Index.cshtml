@@ -1,0 +1,15 @@
+﻿@model IEnumerable<CartmitMVC.Models.CourseReview>
+
+@{
+    ViewBag.Title = "Course Reviews";
+}
+
+<h2>Course Reviews</h2>
+
+@foreach (var item in Model)
+{
+    @Html.Partial("_CourseReview", item)
+}
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>

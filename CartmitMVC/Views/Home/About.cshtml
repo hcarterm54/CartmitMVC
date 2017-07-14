@@ -1,7 +1,7 @@
-﻿@{
+﻿@model CartmitMVC.Models.AboutModel
+@{
     ViewBag.Title = "About";
 }
-<h2>@ViewBag.Title.</h2>
-<h3>@ViewBag.Message</h3>
+<h2>@ViewBag.Title @Model.Name</h2>
 
-<p>Use this area to provide additional information.</p>
+<div>@Model.Location</div>
