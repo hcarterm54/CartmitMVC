@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using System.Web.Mvc;
 using CartmitMVC.Models;
 
@@ -10,8 +9,10 @@ namespace CartmitMVC.Controllers
         // GET: CourseReviews
         public ActionResult Index()
         {
+            var _reviews = CourseReview.GetCourseReviews();
+
             var model = from r in _reviews
-                orderby r.Country
+                orderby r.Rating
                 select r;
 
             return View(model);
@@ -48,6 +49,7 @@ namespace CartmitMVC.Controllers
         // GET: CourseReviews/Edit/5
         public ActionResult Edit(int id)
         {
+            var _reviews = CourseReview.GetCourseReviews();
 
             var review = _reviews.Single(r => r.Id == id);
             return View(review);
@@ -57,6 +59,8 @@ namespace CartmitMVC.Controllers
         [HttpPost]
         public ActionResult Edit(int id, FormCollection collection)
         {
+            var _reviews = CourseReview.GetCourseReviews();
+
             var review = _reviews.Single(r => r.Id == id);
             if (TryUpdateModel(review))
             {
@@ -91,39 +95,13 @@ namespace CartmitMVC.Controllers
         [ChildActionOnly]
         public ActionResult BestReview()
         {
+            var _reviews = CourseReview.GetCourseReviews();
+
             var bestReview = from r in _reviews
                 orderby r.Rating descending
                 select r;
 
             return PartialView("_CourseReview", bestReview.First());
         }
-
-        static List<CourseReview> _reviews = new List<CourseReview>
-        {
-            new CourseReview
-            {
-                Id = 1,
-                Name = "HawksView Golf Club",
-                City = "Lake Geneva",
-                Country = "USA",
-                Rating = 9
-            },
-            new CourseReview
-            {
-                Id = 2,
-                Name = "HeatherRidge Golf Course",
-                City = "Lake Geneva",
-                Country = "USA",
-                Rating = 6
-            },
-            new CourseReview
-            {
-                Id = 3,
-                Name = "The Arboretum Club",
-                City = "Wheeling",
-                Country = "USA",
-                Rating = 7
-            },
-        };
     }
 }

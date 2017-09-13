@@ -12,8 +12,10 @@ namespace CartmitMVC.Controllers
         // GET: SongReview
         public ActionResult Index()
         {
-            var model = from r in _reviews
-                orderby r.Artist
+            var _reviews = SongReview.GetSongReviews();
+            var model =
+                from r in _reviews
+                orderby r.Rating descending 
                 select r;
 
             return View(model);
@@ -50,6 +52,8 @@ namespace CartmitMVC.Controllers
         // GET: SongReview/Edit/5
         public ActionResult Edit(int id)
         {
+            var _reviews = SongReview.GetSongReviews();
+
             var review = _reviews.Single(r => r.Id == id);
             return View(review);
         }
@@ -58,6 +62,8 @@ namespace CartmitMVC.Controllers
         [HttpPost]
         public ActionResult Edit(int id, FormCollection collection)
         {
+            var _reviews = SongReview.GetSongReviews();
+
             var review = _reviews.Single(r => r.Id == id);
             if (TryUpdateModel(review))
             {
@@ -89,33 +95,6 @@ namespace CartmitMVC.Controllers
             }
         }
 
-        static List<SongReview> _reviews = new List<SongReview>
-        {
-            new SongReview
-            {
-                Id = 1,
-                Title = "Will You Love Me Again",
-                Artist = "Michael Jacob",
-                Review = "A striking ballad from the debut EP from St. Mojo, this song features...highlights the songwriting skills of singer and lead guitarist Michael Jacob, whose earlier endeavors included his first band, Overseer (Wide is the Path, 1993) and Proximity...",
-                Released = "2016"
-            },
-            new SongReview
-            {
-                Id = 2,
-                Title = "Golden Heart",
-                Artist = "Mark Knopfler",
-                Review = "The title track from the 1996 album, Golden Heart",
-                Released = "1996"
-            },
-            new SongReview
-            {
-                Id = 3,
-                Title = "Working Man",
-                Artist = "Rush",
-                Review = "From the self-titled debute album, this marvelous piece features original drummer John Rutsey...and also found it's way into their 1976 album 'All the World's a Stage with Neil Peart on drums",
-                Released = "1974"
-            },
-        };
 
     }
 }
